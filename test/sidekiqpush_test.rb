@@ -2,19 +2,19 @@ require 'test_helper'
 
 class SidekiqpushTest < Minitest::Test
   class Fakeredis
-    attr_reader :set, :list
+    attr_reader :queues, :payload
 
     def initialize
-      @set = {}
-      @list = {}
+      @queues = {}
+      @payload = {}
     end
 
     def sadd(set_name, set_value)
-      @set[set_name] = set_value
+      @queues[set_name] = set_value
     end
 
     def lpush(list_name, list_item)
-      @list[list_name] = list_item
+      @payload[list_name] = list_item
     end
   end
 
@@ -26,9 +26,9 @@ class SidekiqpushTest < Minitest::Test
     redis = Fakeredis.new
     SidekiqPush::Client.new(payload, redis).enqueue
 
-    assert_equal "test_queue", redis.set["queues"]
+    assert_equal "test_queue", redis.queues["queues"]
 
-    hash = JSON.parse(redis.list["queue:test_queue"])
+    hash = JSON.parse(redis.payload["queue:test_queue"])
     assert_equal false, hash["retry"]
     assert_equal "test_queue", hash["queue"]
     assert_equal "TestClass", hash["class"]
