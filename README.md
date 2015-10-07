@@ -1,5 +1,7 @@
 # Sidekiqpush
 
+[![Build Status](https://travis-ci.org/beanieboi/sidekiqpush.svg?branch=master)](http://travis-ci.org/beanieboi/sidekiqpush)
+
 Super Simple Sidekiq Push. Push to Sidekiq without all the dependencies.
 
 ## Installation
