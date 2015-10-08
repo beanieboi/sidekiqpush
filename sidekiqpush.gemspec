@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Super Simple Sidekiq Push'
   spec.description   = 'Super Simple Sidekiq Push'
   spec.homepage      = 'https://abwesend.com'
+  spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
